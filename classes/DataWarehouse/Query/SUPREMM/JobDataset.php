@@ -345,7 +345,7 @@ class JobDataset extends \DataWarehouse\Query\RawQuery
             if ($sfield == "cpu_user") {
                 $this->addFieldByDefinition($sdata);
                 $this->addErrorField($sfield, 'je');
-            } else if ($sdata['dtype'] == 'analysis') {
+            } elseif ($sdata['dtype'] == 'analysis') {
                 $this->addFieldByDefinition($sdata);
             }
         }
