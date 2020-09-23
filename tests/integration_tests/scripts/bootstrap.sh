@@ -31,5 +31,7 @@ then
 fi
 
 echo BEGIN PAGE OUTPUT
-curl -k https://localhost/
+curl -ks https://localhost/
 echo END PAGE OUTPUT
+
+yum -y remove google-chrome-stable
