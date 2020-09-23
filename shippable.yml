@@ -18,7 +18,7 @@ build:
         pull: false
         options: "--user root -e HOME=/root --shm-size 2g"
     ci:
-        - git clone --depth=1 --branch=$BRANCH https://github.com/ubccr/xdmod.git ../xdmod
+        - git clone --depth=1 --branch=xdmod9.5 https://github.com/ubccr/xdmod.git ../xdmod
         - ln -s $SHIPPABLE_BUILD_DIR ../xdmod/open_xdmod/modules/supremm
         - composer install -d ../xdmod --no-progress
         - cd ../xdmod && ~/bin/buildrpm xdmod supremm && cd $SHIPPABLE_BUILD_DIR
@@ -30,24 +30,3 @@ build:
         - ./tests/regression_tests/runtests.sh --junit-output-dir `pwd`/shippable/testresults
     on_failure:
         - cat /var/log/xdmod/*
-jobs:
-    - name: xdmod-supremm_runCI
-      type: runCI
-      steps:
-        - IN: nightly-trigger
-      on_success:
-        - NOTIFY: email-team
-      on_failure:
-        - NOTIFY: email-team
-resources:
-  - name: nightly-trigger
-    type: time
-    versionTemplate:
-      interval: "0 3 * * *" # UTC
-  - name: email-team
-    type: notification
-    versionTemplate:
-      method: email
-      recipients:
-         - "jpwhite4@buffalo.edu"
-         - "ccr-xdmod-cron@buffalo.edu"

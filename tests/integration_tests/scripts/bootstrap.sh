@@ -29,3 +29,7 @@ then
     $XDMOD_BOOTSTRAP
     aggregate_supremm.sh
 fi
+
+echo BEGIN PAGE OUTPUT
+curl -k https://localhost/
+echo END PAGE OUTPUT
